@@ -1,0 +1,37 @@
+#include <Servo.h>
+
+Servo myservo;
+bool automaticMode = true;
+
+void setup() {
+  myservo.attach(9);
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Verifica se recebeu comando
+  if (Serial.available() > 0) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+
+    if (cmd == "AUTO") automaticMode = true;
+    if (cmd == "MANUAL") automaticMode = false;
+    if (!automaticMode) {
+      if (cmd == "OPEN")  myservo.write(180);
+      if (cmd == "CLOSE") myservo.write(0);
+    }
+  }
+
+  // Modo automático
+  if (automaticMode) {
+    int LDR = analogRead(A0);
+    Serial.println(LDR);
+
+    if (LDR > 300)
+      myservo.write(180);
+    else
+      myservo.write(0);
+
+    delay(200);
+  }
+}
