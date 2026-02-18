@@ -24,7 +24,7 @@ Desenvolver uma solução que reaja às condições de iluminação, abrindo ou 
 - Lógica de decisão em tempo real
 - Introdução à IoT
 
-## ▶ Como Executar
+##  Como Executar
 1. Conectar o sensor LDR ao Arduino.
 2. Carregar o código na placa.
 3. Executar o script Python para comunicação com o dispositivo:
